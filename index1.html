@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>مهارات</title>
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+  
+    
+        <table class="table m-4">
+         
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Job</th>
+              <th><button type="button" class="btn btn-danger" onclick="AddToArray()">Push</button></tr>
+            </tr>
+          </thead>
+          <tbody id="tBody">
+         
+          </tbody>
+      </table>
+
+     
+    
+         
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit user Info</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <div class="row">
+             <div class="col-12">
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+                <input type="text" class="form-control userName" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Age</span>
+                <input type="text" class="form-control userAge" placeholder="Age" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Job</span>
+                <input type="text" class="form-control userJob" placeholder="Job" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+
+             </div>
+             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
+            <button type="button" class="btn btn-danger"> Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+        var testarry=[
+        {
+            Name:"Marwa",
+            Age:27,
+            job:"Engineer"
+        },
+        {
+            Name:"Hiba",
+            Age:25,
+            job:"Doctor"
+        },
+        {
+            Name:"Mary",
+            Age:20,
+            job:"Student"
+        },
+        {
+            Name:"Malk",
+            Age:30,
+            job:"Teacher"
+        }
+    ]
+    console.log(testarry);
+    localStorage.setItem("Narrry",JSON.stringify(testarry));
+    
+
+    
+    var Thtml="";
+    var j=1;
+    for(var i=0;i<testarry.length;i++){
+   Thtml+=`<tr>
+            <td>`+ j++ +`</td>
+            <td>`+ testarry[i]["Name"] +`</td>
+            <td>`+testarry[i]["Age"]+`</td>
+            <td>`+testarry[i]["job"]+`</td>
+            <td><button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showinfo('`+ testarry[i]["Name"] +`','`+ testarry[i]["Age"] +` ','`+ testarry[i]["job"] +`')"> Edit</button><td/>
+              
+            </tr>`
+    }
+$(`#tBody`).html(Thtml);
+console.log(testarry);
+function showinfo(name,age,job){
+      console.log(name);
+      console.log(age);
+      console.log(job);
+  $(`.userName`).val(name);
+  $(`.userAge`).val(age);
+  $(`.userJob`).val(job);
+  
+}
+function AddToArray(){
+  var obj={
+  Name:"Zena",
+  Age:35,
+  Job:"manger"
+}
+
+testarry.push(obj);
+console.log(testarry);
+localStorage.setItem("Tarray",JSON.stringify(testarry));
+}
+
+  </script>
+</html>
